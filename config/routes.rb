@@ -1,4 +1,12 @@
 DevLOVEBooks::Application.routes.draw do
+  get "admin/login"
+
+  get "admin/logut"
+
+  get "admin/index"
+
+  resources :users
+
   resources :publishers
 
   resources :books
