@@ -1,0 +1,35 @@
+<table>
+  <tr align=center>
+    <th>Isbn</th>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Release on</th>
+    <th>Price</th>
+    <th>Publisher</th>
+    <th>Content</th>
+    <th>Page</th>
+    <th>Image url</th>
+    <th>Index</th>
+    <th>View Status</th>
+    <th></th>
+  </tr>
+
+<%- for book in @books -%>
+  <tr style="background-color: <%= cycle( "#EBEBEB","C5E4E3") %>; ">
+    <td><%=h book.isbn %></td>
+    <td><%=h book.title %></td>
+    <td><%=h book.author %></td>
+    <td><%=h book.release_on %></td>
+    <td><%=h format2yen(book.price) %></td>
+    <td><%=h book.publisher.name %></td>
+    <td><%=h book.content %></td>
+    <td><%=h format2page(book.page) %></td>
+    <td><%=h book.image_url %></td>
+    <td><%=h book.index %></td>
+    <td><%=h book.view_status %></td>
+    <td><%= link_to 'Show', book %></td>
+    <td><%= link_to 'Edit', edit_book_path(book) %></td>
+    <td><%= link_to 'Destroy', book, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<%- end -%>
+</table>

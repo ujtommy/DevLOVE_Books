@@ -1,0 +1,732 @@
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (2.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (1.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateBooks (20110305143445)
+  [1m[36mSQL (0.6ms)[0m  [1mCREATE TABLE "books" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "isbn" varchar(255), "title" varchar(255), "author" varchar(255), "release_on" date, "price" integer, "publisher_id" integer, "content" text, "page" integer, "image_url" varchar(255), "index" text, "view_status" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110305143445')
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("books")
+
+
+Started GET "/books" for 127.0.0.1 at 2011-03-05 23:35:39 +0900
+  Processing by BooksController#index as HTML
+  [1m[36mBook Load (0.6ms)[0m  [1mSELECT "books".* FROM "books"[0m
+Rendered books/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 56ms (Views: 8.1ms | ActiveRecord: 0.6ms)
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateBooks (20110305143445)
+Migrating to CreatePublishers (20110305143853)
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.5ms)[0m  [1mCREATE TABLE "publishers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "url" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110305143853')
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("books")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("publishers")[0m
+
+
+Started GET "/publishers" for 127.0.0.1 at 2011-03-05 23:40:31 +0900
+  Processing by PublishersController#index as HTML
+  [1m[36mPublisher Load (0.5ms)[0m  [1mSELECT "publishers".* FROM "publishers"[0m
+Rendered publishers/index.html.erb within layouts/application (34.1ms)
+Completed 200 OK in 91ms (Views: 39.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/publishers/new" for 127.0.0.1 at 2011-03-05 23:40:36 +0900
+  Processing by PublishersController#new as HTML
+Rendered publishers/_form.html.erb (12.0ms)
+Rendered publishers/new.html.erb within layouts/application (16.1ms)
+Completed 200 OK in 55ms (Views: 20.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/publishers" for 127.0.0.1 at 2011-03-05 23:42:32 +0900
+  Processing by PublishersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SSdUxNcG7KhN/CCQ7gNuW+ayD/o+CE6Q8Q9WF+fqBSE=", "publisher"=>{"name"=>"アスキー・メディアワークス", "url"=>"http://www.asciimw.jp/"}, "commit"=>"Create Publisher"}
+  [1m[35mSQL (0.3ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mAREL (0.6ms)[0m  [1mINSERT INTO "publishers" ("name", "url", "created_at", "updated_at") VALUES ('アスキー・メディアワークス', 'http://www.asciimw.jp/', '2011-03-05 14:42:32.939890', '2011-03-05 14:42:32.939890')[0m
+Redirected to http://localhost:3000/publishers/1
+Completed 302 Found in 36ms
+
+
+Started GET "/publishers/1" for 127.0.0.1 at 2011-03-05 23:42:32 +0900
+  Processing by PublishersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPublisher Load (0.3ms)[0m  SELECT "publishers".* FROM "publishers" WHERE "publishers"."id" = 1 LIMIT 1
+Rendered publishers/show.html.erb within layouts/application (48.9ms)
+Completed 200 OK in 62ms (Views: 53.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/publishers" for 127.0.0.1 at 2011-03-05 23:42:38 +0900
+  Processing by PublishersController#index as HTML
+  [1m[36mPublisher Load (0.4ms)[0m  [1mSELECT "publishers".* FROM "publishers"[0m
+Rendered publishers/index.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 21ms (Views: 14.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/publishers/new" for 127.0.0.1 at 2011-03-05 23:42:40 +0900
+  Processing by PublishersController#new as HTML
+Rendered publishers/_form.html.erb (6.9ms)
+Rendered publishers/new.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 24ms (Views: 15.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/publishers" for 127.0.0.1 at 2011-03-05 23:44:14 +0900
+  Processing by PublishersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SSdUxNcG7KhN/CCQ7gNuW+ayD/o+CE6Q8Q9WF+fqBSE=", "publisher"=>{"name"=>"ピアソンエデュケーション", "url"=>"http://www.pej-hed.jp/"}, "commit"=>"Create Publisher"}
+  [1m[35mAREL (0.5ms)[0m  INSERT INTO "publishers" ("name", "url", "created_at", "updated_at") VALUES ('ピアソンエデュケーション', 'http://www.pej-hed.jp/', '2011-03-05 14:44:14.666597', '2011-03-05 14:44:14.666597')
+Redirected to http://localhost:3000/publishers/2
+Completed 302 Found in 23ms
+
+
+Started GET "/publishers/2" for 127.0.0.1 at 2011-03-05 23:44:14 +0900
+  Processing by PublishersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPublisher Load (0.2ms)[0m  [1mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" = 2 LIMIT 1[0m
+Rendered publishers/show.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 23ms (Views: 15.3ms | ActiveRecord: 0.7ms)
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateBooks (20110305143445)
+Migrating to CreatePublishers (20110305143853)
+Migrating to CreateIndexAndConstraintForBooks (20110305150619)
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateBooks (20110305143445)
+Migrating to CreatePublishers (20110305143853)
+Migrating to CreateIndexAndConstraintForBooks (20110305150619)
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("books")[0m
+  [1m[35mSQL (0.1ms)[0m  CREATE INDEX "index_books_on_pubulisher_id" ON "books" ("pubulisher_id")
+SQLite3::SQLException: table books has no column named pubulisher_id: CREATE  INDEX "index_books_on_pubulisher_id" ON "books" ("pubulisher_id")
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.3ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateBooks (20110305143445)
+Migrating to CreatePublishers (20110305143853)
+Migrating to CreateIndexAndConstraintForBooks (20110305150619)
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.1ms)[0m  [1mPRAGMA index_list("books")[0m
+  [1m[35mSQL (0.5ms)[0m  CREATE INDEX "index_books_on_publisher_id" ON "books" ("publisher_id")
+  [1m[36mSQL (0.2ms)[0m  [1malter table books add constraint fk_books_publishers foreign key (pubisher_id) references publishers(id)[0m
+SQLite3::SQLException: near "constraint": syntax error: alter table books add constraint fk_books_publishers foreign key (pubisher_id) references publishers(id)
+
+
+Started GET "/books" for 127.0.0.1 at 2011-03-06 00:49:18 +0900
+  Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.6ms)[0m  SELECT "books".* FROM "books"
+Rendered books/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 33ms (Views: 9.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2011-03-06 00:49:20 +0900
+  Processing by BooksController#new as HTML
+Rendered books/_form.html.erb (60.4ms)
+Rendered books/new.html.erb within layouts/application (64.8ms)
+Completed 200 OK in 87ms (Views: 70.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2011-03-06 01:00:35 +0900
+  Processing by BooksController#index as HTML
+  [1m[36mBook Load (0.6ms)[0m  [1mSELECT "books".* FROM "books"[0m
+Rendered books/_list.html.erb (0.7ms)
+Rendered books/index.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 22ms (Views: 11.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2011-03-06 01:00:36 +0900
+  Processing by BooksController#new as HTML
+ERROR: compiling _app_views_books__form_html_erb__1153637248675578107_2153093920_1566461168574774201 RAISED /Users/ujtommy/NetBeansProjects/DevLOVE/DevLOVE_Books/app/views/books/_form.html.erb:70: syntax error, unexpected keyword_ensure, expecting keyword_end
+/Users/ujtommy/NetBeansProjects/DevLOVE/DevLOVE_Books/app/views/books/_form.html.erb:72: syntax error, unexpected $end, expecting keyword_end
+Function body:           def _app_views_books__form_html_erb__1153637248675578107_2153093920_1566461168574774201(local_assigns)
+            _old_virtual_path, @_virtual_path = @_virtual_path, "books/_form";_old_output_buffer = @output_buffer;btn_name = local_assigns[:btn_name];form = local_assigns[:form];;@output_buffer = ActionView::OutputBuffer.new;@output_buffer.append=  form_for(@book) do |f| @output_buffer.safe_concat('
+');   if @book.errors.any? 
+@output_buffer.safe_concat('    <div id="error_explanation">
+      <h2>');@output_buffer.append= ( pluralize(@book.errors.count, "error") );@output_buffer.safe_concat(' prohibited this book from being saved:</h2>
+
+      <ul>
+');@output_buffer.append_if_string=        @book.errors.full_messages.each do |msg| 
+@output_buffer.safe_concat('        <li>');@output_buffer.append= ( msg );@output_buffer.safe_concat('</li>
+');       end 
+@output_buffer.safe_concat('      </ul>
+    </div>
+
+<table>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :isbn );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_field :isbn );@output_buffer.safe_concat('</td>
+  </tr>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :title );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_field :title );@output_buffer.safe_concat('</td>
+  </tr>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :author );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_field :author );@output_buffer.safe_concat('</td>
+  </tr>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :release_on );@output_buffer.safe_concat('</th>
+    <td>
+      ');@output_buffer.append= ( f.date_select :release_on,
+        :start_year => 1995,
+        :end_year => Time.now.year,
+        :use_month_numbers => true,
+        :include_blank => true
+      );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('    </td>
+  </tr>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :price );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_field :price );@output_buffer.safe_concat('</td>
+  </tr>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :publisher_id );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.select(:publisher_id, PublishersController.publisher_list) );@output_buffer.safe_concat('</td>
+  </tr>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :content );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_area :content );@output_buffer.safe_concat('</td>
+  </tr>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :page );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_field :page );@output_buffer.safe_concat('</td>
+  </tr>
+
+  <tr>
+    <th>');@output_buffer.append= ( f.label :image_url );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_field :image_url );@output_buffer.safe_concat('</td>
+  </tr>
+
+  <tr>
+    <th>');@output_buffer.append= ( f.label :index );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_area :index );@output_buffer.safe_concat('</td>
+  </tr>
+
+  </table>
+  <p>
+    ');@output_buffer.append= ( f.submit btn_name );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('  </p>
+'); end 
+@output_buffer.to_s
+          ensure
+            @_virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/template.rb:255:in `module_eval'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/template.rb:255:in `compile'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/template.rb:134:in `block in render'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/partials.rb:333:in `render_partial'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/partials.rb:262:in `block in render'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:52:in `block in instrument'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/partials.rb:260:in `render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/partials.rb:378:in `_render_partial'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/rendering.rb:22:in `render'
+/Users/ujtommy/NetBeansProjects/DevLOVE/DevLOVE_Books/app/views/books/new.html.erb:3:in `_app_views_books_new_html_erb___2685068865052978449_2153113740__4005738758097634239'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/template.rb:135:in `block in render'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/rendering.rb:59:in `block in _render_template'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:52:in `block in instrument'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/rendering.rb:56:in `_render_template'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/rendering.rb:26:in `render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/rendering.rb:115:in `_render_template'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/rendering.rb:109:in `render_to_body'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/rendering.rb:102:in `render_to_string'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/rendering.rb:93:in `render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/rendering.rb:17:in `render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/usr/local/lib/ruby/1.9.1/benchmark.rb:309:in `realtime'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.9/gems/activerecord-3.0.5/lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/mime_responds.rb:261:in `block in retrieve_response_from_mimes'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/mime_responds.rb:192:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/mime_responds.rb:192:in `respond_to'
+/Users/ujtommy/NetBeansProjects/DevLOVE/DevLOVE_Books/app/controllers/books_controller.rb:29:in `new'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/base.rb:150:in `process_action'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/rendering.rb:11:in `process_action'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/callbacks.rb:435:in `_run__536561418220527845__process_action__728063620461732871__callbacks'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/callbacks.rb:409:in `_run_process_action_callbacks'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/callbacks.rb:93:in `run_callbacks'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:52:in `block in instrument'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/base.rb:119:in `process'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/rendering.rb:41:in `process'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal.rb:138:in `dispatch'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal.rb:178:in `block in action'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/routing/route_set.rb:62:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/routing/route_set.rb:27:in `call'
+/Library/Ruby/Gems/1.9/gems/rack-mount-0.6.13/lib/rack/mount/route_set.rb:148:in `block in call'
+/Library/Ruby/Gems/1.9/gems/rack-mount-0.6.13/lib/rack/mount/code_generation.rb:93:in `block in recognize'
+/Library/Ruby/Gems/1.9/gems/rack-mount-0.6.13/lib/rack/mount/code_generation.rb:75:in `optimized_each'
+/Library/Ruby/Gems/1.9/gems/rack-mount-0.6.13/lib/rack/mount/code_generation.rb:92:in `recognize'
+/Library/Ruby/Gems/1.9/gems/rack-mount-0.6.13/lib/rack/mount/route_set.rb:139:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/routing/route_set.rb:492:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Library/Ruby/Gems/1.9/gems/rack-1.2.1/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Library/Ruby/Gems/1.9/gems/activerecord-3.0.5/lib/active_record/query_cache.rb:32:in `block in call'
+/Library/Ruby/Gems/1.9/gems/activerecord-3.0.5/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Library/Ruby/Gems/1.9/gems/activerecord-3.0.5/lib/active_record/query_cache.rb:12:in `cache'
+/Library/Ruby/Gems/1.9/gems/activerecord-3.0.5/lib/active_record/query_cache.rb:31:in `call'
+/Library/Ruby/Gems/1.9/gems/activerecord-3.0.5/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/callbacks.rb:415:in `_run_call_callbacks'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Library/Ruby/Gems/1.9/gems/rack-1.2.1/lib/rack/sendfile.rb:107:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Library/Ruby/Gems/1.9/gems/railties-3.0.5/lib/rails/rack/logger.rb:13:in `call'
+/Library/Ruby/Gems/1.9/gems/rack-1.2.1/lib/rack/runtime.rb:17:in `call'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Library/Ruby/Gems/1.9/gems/rack-1.2.1/lib/rack/lock.rb:11:in `block in call'
+<internal:prelude>:10:in `synchronize'
+/Library/Ruby/Gems/1.9/gems/rack-1.2.1/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Library/Ruby/Gems/1.9/gems/railties-3.0.5/lib/rails/application.rb:168:in `call'
+/Library/Ruby/Gems/1.9/gems/railties-3.0.5/lib/rails/application.rb:77:in `method_missing'
+/Library/Ruby/Gems/1.9/gems/railties-3.0.5/lib/rails/rack/log_tailer.rb:14:in `call'
+/Library/Ruby/Gems/1.9/gems/rack-1.2.1/lib/rack/content_length.rb:13:in `call'
+/Library/Ruby/Gems/1.9/gems/rack-1.2.1/lib/rack/handler/webrick.rb:52:in `service'
+/usr/local/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/usr/local/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/usr/local/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+Rendered books/_form.html.erb (14.0ms)
+Rendered books/new.html.erb within layouts/application (16.0ms)
+Completed   in 41ms
+
+ActionView::Template::Error (/Users/ujtommy/NetBeansProjects/DevLOVE/DevLOVE_Books/app/views/books/_form.html.erb:70: syntax error, unexpected keyword_ensure, expecting keyword_end
+/Users/ujtommy/NetBeansProjects/DevLOVE/DevLOVE_Books/app/views/books/_form.html.erb:72: syntax error, unexpected $end, expecting keyword_end):
+    67:   </p>
+    68: <% end %>
+  app/views/books/new.html.erb:3:in `_app_views_books_new_html_erb___2685068865052978449_2153113740__4005738758097634239'
+  app/controllers/books_controller.rb:29:in `new'
+
+Rendered /Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+Rendered /Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.3ms)
+Rendered /Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (14.9ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2011-03-06 01:04:23 +0900
+  Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.5ms)[0m  SELECT "books".* FROM "books"
+Rendered books/_list.html.erb (1.1ms)
+Rendered books/index.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 28ms (Views: 18.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2011-03-06 01:04:25 +0900
+  Processing by BooksController#new as HTML
+ERROR: compiling _app_views_books__form_html_erb__1153637248675578107_2152756840_1566461168574774201 RAISED /Users/ujtommy/NetBeansProjects/DevLOVE/DevLOVE_Books/app/views/books/_form.html.erb:75: syntax error, unexpected keyword_ensure, expecting keyword_end
+/Users/ujtommy/NetBeansProjects/DevLOVE/DevLOVE_Books/app/views/books/_form.html.erb:77: syntax error, unexpected $end, expecting keyword_end
+Function body:           def _app_views_books__form_html_erb__1153637248675578107_2152756840_1566461168574774201(local_assigns)
+            _old_virtual_path, @_virtual_path = @_virtual_path, "books/_form";_old_output_buffer = @output_buffer;btn_name = local_assigns[:btn_name];form = local_assigns[:form];;@output_buffer = ActionView::OutputBuffer.new;@output_buffer.append=  form_for(@book) do |f| @output_buffer.safe_concat('
+');   if @book.errors.any? 
+@output_buffer.safe_concat('    <div id="error_explanation">
+      <h2>');@output_buffer.append= ( pluralize(@book.errors.count, "error") );@output_buffer.safe_concat(' prohibited this book from being saved:</h2>
+
+      <ul>
+');@output_buffer.append_if_string=        @book.errors.full_messages.each do |msg| 
+@output_buffer.safe_concat('        <li>');@output_buffer.append= ( msg );@output_buffer.safe_concat('</li>
+');       end 
+@output_buffer.safe_concat('      </ul>
+    </div>
+
+<table>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :isbn );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_field :isbn );@output_buffer.safe_concat('</td>
+  </tr>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :title );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_field :title );@output_buffer.safe_concat('</td>
+  </tr>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :author );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_field :author );@output_buffer.safe_concat('</td>
+  </tr>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :release_on );@output_buffer.safe_concat('</th>
+    <td>
+      ');@output_buffer.append= ( f.date_select :release_on,
+        :start_year => 1995,
+        :end_year => Time.now.year,
+        :use_month_numbers => true,
+        :include_blank => true
+      );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('    </td>
+  </tr>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :price );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_field :price );@output_buffer.safe_concat('</td>
+  </tr>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :publisher_id );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.select(:publisher_id, PublishersController.publisher_list) );@output_buffer.safe_concat('</td>
+  </tr>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :content );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_area :content );@output_buffer.safe_concat('</td>
+  </tr>
+  <tr>
+    <th>');@output_buffer.append= ( f.label :page );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_field :page );@output_buffer.safe_concat('</td>
+  </tr>
+
+  <tr>
+    <th>');@output_buffer.append= ( f.label :image_url );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_field :image_url );@output_buffer.safe_concat('</td>
+  </tr>
+
+  <tr>
+    <th>');@output_buffer.append= ( f.label :index );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_area :index );@output_buffer.safe_concat('</td>
+  </tr>
+
+    <tr>
+    <th>');@output_buffer.append= ( f.label :view_status );@output_buffer.safe_concat('</th>
+    <td>');@output_buffer.append= ( f.text_field :view_status );@output_buffer.safe_concat('</td>
+  </tr>
+
+  </table>
+  <p>
+    ');@output_buffer.append= ( f.submit btn_name );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('  </p>
+'); end 
+@output_buffer.to_s
+          ensure
+            @_virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+Backtrace: /Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/template.rb:255:in `module_eval'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/template.rb:255:in `compile'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/template.rb:134:in `block in render'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/partials.rb:333:in `render_partial'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/partials.rb:262:in `block in render'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:52:in `block in instrument'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/partials.rb:260:in `render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/partials.rb:378:in `_render_partial'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/rendering.rb:22:in `render'
+/Users/ujtommy/NetBeansProjects/DevLOVE/DevLOVE_Books/app/views/books/new.html.erb:3:in `_app_views_books_new_html_erb___2685068865052978449_2152837920__4005738758097634239'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/template.rb:135:in `block in render'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:54:in `instrument'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/template.rb:127:in `render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/rendering.rb:59:in `block in _render_template'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:52:in `block in instrument'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/rendering.rb:56:in `_render_template'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_view/render/rendering.rb:26:in `render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/rendering.rb:115:in `_render_template'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/rendering.rb:109:in `render_to_body'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/renderers.rb:47:in `render_to_body'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/compatibility.rb:55:in `render_to_body'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/rendering.rb:102:in `render_to_string'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/rendering.rb:93:in `render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/rendering.rb:17:in `render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/usr/local/lib/ruby/1.9.1/benchmark.rb:309:in `realtime'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/instrumentation.rb:78:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.9/gems/activerecord-3.0.5/lib/active_record/railties/controller_runtime.rb:15:in `cleanup_view_runtime'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/mime_responds.rb:261:in `block in retrieve_response_from_mimes'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/mime_responds.rb:192:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/mime_responds.rb:192:in `respond_to'
+/Users/ujtommy/NetBeansProjects/DevLOVE/DevLOVE_Books/app/controllers/books_controller.rb:29:in `new'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/base.rb:150:in `process_action'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/rendering.rb:11:in `process_action'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/callbacks.rb:435:in `_run__536561418220527845__process_action__728063620461732871__callbacks'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/callbacks.rb:409:in `_run_process_action_callbacks'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/callbacks.rb:93:in `run_callbacks'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:52:in `block in instrument'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/notifications.rb:52:in `instrument'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/rescue.rb:17:in `process_action'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/base.rb:119:in `process'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/abstract_controller/rendering.rb:41:in `process'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal.rb:138:in `dispatch'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_controller/metal.rb:178:in `block in action'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/routing/route_set.rb:62:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/routing/route_set.rb:62:in `dispatch'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/routing/route_set.rb:27:in `call'
+/Library/Ruby/Gems/1.9/gems/rack-mount-0.6.13/lib/rack/mount/route_set.rb:148:in `block in call'
+/Library/Ruby/Gems/1.9/gems/rack-mount-0.6.13/lib/rack/mount/code_generation.rb:93:in `block in recognize'
+/Library/Ruby/Gems/1.9/gems/rack-mount-0.6.13/lib/rack/mount/code_generation.rb:75:in `optimized_each'
+/Library/Ruby/Gems/1.9/gems/rack-mount-0.6.13/lib/rack/mount/code_generation.rb:92:in `recognize'
+/Library/Ruby/Gems/1.9/gems/rack-mount-0.6.13/lib/rack/mount/route_set.rb:139:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/routing/route_set.rb:492:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Library/Ruby/Gems/1.9/gems/rack-1.2.1/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Library/Ruby/Gems/1.9/gems/activerecord-3.0.5/lib/active_record/query_cache.rb:32:in `block in call'
+/Library/Ruby/Gems/1.9/gems/activerecord-3.0.5/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Library/Ruby/Gems/1.9/gems/activerecord-3.0.5/lib/active_record/query_cache.rb:12:in `cache'
+/Library/Ruby/Gems/1.9/gems/activerecord-3.0.5/lib/active_record/query_cache.rb:31:in `call'
+/Library/Ruby/Gems/1.9/gems/activerecord-3.0.5/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/callbacks.rb:415:in `_run_call_callbacks'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Library/Ruby/Gems/1.9/gems/rack-1.2.1/lib/rack/sendfile.rb:107:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Library/Ruby/Gems/1.9/gems/railties-3.0.5/lib/rails/rack/logger.rb:13:in `call'
+/Library/Ruby/Gems/1.9/gems/rack-1.2.1/lib/rack/runtime.rb:17:in `call'
+/Library/Ruby/Gems/1.9/gems/activesupport-3.0.5/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Library/Ruby/Gems/1.9/gems/rack-1.2.1/lib/rack/lock.rb:11:in `block in call'
+<internal:prelude>:10:in `synchronize'
+/Library/Ruby/Gems/1.9/gems/rack-1.2.1/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Library/Ruby/Gems/1.9/gems/railties-3.0.5/lib/rails/application.rb:168:in `call'
+/Library/Ruby/Gems/1.9/gems/railties-3.0.5/lib/rails/application.rb:77:in `method_missing'
+/Library/Ruby/Gems/1.9/gems/railties-3.0.5/lib/rails/rack/log_tailer.rb:14:in `call'
+/Library/Ruby/Gems/1.9/gems/rack-1.2.1/lib/rack/content_length.rb:13:in `call'
+/Library/Ruby/Gems/1.9/gems/rack-1.2.1/lib/rack/handler/webrick.rb:52:in `service'
+/usr/local/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/usr/local/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/usr/local/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+Rendered books/_form.html.erb (1.5ms)
+Rendered books/new.html.erb within layouts/application (3.1ms)
+Completed   in 22ms
+
+ActionView::Template::Error (/Users/ujtommy/NetBeansProjects/DevLOVE/DevLOVE_Books/app/views/books/_form.html.erb:75: syntax error, unexpected keyword_ensure, expecting keyword_end
+/Users/ujtommy/NetBeansProjects/DevLOVE/DevLOVE_Books/app/views/books/_form.html.erb:77: syntax error, unexpected $end, expecting keyword_end):
+    72:   </p>
+    73: <% end %>
+  app/views/books/new.html.erb:3:in `_app_views_books_new_html_erb___2685068865052978449_2152837920__4005738758097634239'
+  app/controllers/books_controller.rb:29:in `new'
+
+Rendered /Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+Rendered /Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.2ms)
+Rendered /Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.8ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2011-03-06 01:06:06 +0900
+  Processing by BooksController#new as HTML
+  [1m[36mPublisher Load (1.9ms)[0m  [1mSELECT "publishers".* FROM "publishers"[0m
+Rendered books/_form.html.erb (114.5ms)
+Rendered books/new.html.erb within layouts/application (119.4ms)
+Completed 200 OK in 139ms (Views: 122.7ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2011-03-06 01:10:11 +0900
+  Processing by BooksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SSdUxNcG7KhN/CCQ7gNuW+ayD/o+CE6Q8Q9WF+fqBSE=", "book"=>{"isbn"=>"978-4048687416", "title"=>"リーンソフトウェア開発と組織改革", "author"=>"Mary and Tom Poppendieck 著、 依田光江 翻訳、 依田智夫 監訳 (著)", "release_on(1i)"=>"2010", "release_on(2i)"=>"10", "release_on(3i)"=>"9", "price"=>"2800", "publisher_id"=>"1", "content"=>"重要なのは結果ではない。結果に注目するマネジメントの誤り―24のフレームを用い、システム開発を主導するリーダーシップについて解説する。", "page"=>"336", "image_url"=>"", "index"=>"", "view_status"=>"1"}, "commit"=>"Create"}
+  [1m[35mAREL (0.6ms)[0m  INSERT INTO "books" ("isbn", "title", "author", "release_on", "price", "publisher_id", "content", "page", "image_url", "index", "view_status", "created_at", "updated_at") VALUES ('978-4048687416', 'リーンソフトウェア開発と組織改革', 'Mary and Tom Poppendieck 著、 依田光江 翻訳、 依田智夫 監訳 (著)', '2010-10-09', 2800, 1, '重要なのは結果ではない。結果に注目するマネジメントの誤り―24のフレームを用い、システム開発を主導するリーダーシップについて解説する。', 336, '', '', '1', '2011-03-05 16:10:11.247583', '2011-03-05 16:10:11.247583')
+Redirected to http://localhost:3000/books/1
+Completed 302 Found in 88ms
+
+
+Started GET "/books/1" for 127.0.0.1 at 2011-03-06 01:10:11 +0900
+  Processing by BooksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBook Load (0.3ms)[0m  [1mSELECT "books".* FROM "books" WHERE "books"."id" = 1 LIMIT 1[0m
+Rendered books/show.html.erb within layouts/application (24.2ms)
+Completed 200 OK in 43ms (Views: 29.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2011-03-06 01:10:21 +0900
+  Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.6ms)[0m  SELECT "books".* FROM "books"
+  [1m[36mPublisher Load (0.3ms)[0m  [1mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" = 1 LIMIT 1[0m
+Rendered books/_list.html.erb (61.0ms)
+Rendered books/index.html.erb within layouts/application (63.0ms)
+Completed   in 76ms
+
+ActionView::Template::Error (undefined local variable or method `view_status' for #<#<Class:0x00000102997188>:0x0000010298a078>):
+    26:     <td><%=h format2page(book.page) %></td>
+    27:     <td><%=h book.image_url %></td>
+    28:     <td><%=h book.index %></td>
+    29:     <td><%=h view_status %></td>
+    30:     <td><%= link_to 'Show', book %></td>
+    31:     <td><%= link_to 'Edit', edit_book_path(book) %></td>
+    32:     <td><%= link_to 'Destroy', book, :confirm => 'Are you sure?', :method => :delete %></td>
+  app/views/books/_list.html.erb:29:in `block in _app_views_books__list_html_erb__789903318695011855_2169166120_1218082867068955390'
+  app/views/books/_list.html.erb:17:in `each'
+  app/views/books/_list.html.erb:17:in `_app_views_books__list_html_erb__789903318695011855_2169166120_1218082867068955390'
+  app/views/books/index.html.erb:3:in `_app_views_books_index_html_erb___297174873100048506_2169244540__4005738758097634239'
+  app/controllers/books_controller.rb:7:in `index'
+
+Rendered /Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.6ms)
+Rendered /Library/Ruby/Gems/1.9/gems/actionpack-3.0.5/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (11.1ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2011-03-06 01:11:28 +0900
+  Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.4ms)[0m  SELECT "books".* FROM "books"
+  [1m[36mPublisher Load (0.2ms)[0m  [1mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" = 1 LIMIT 1[0m
+Rendered books/_list.html.erb (38.5ms)
+Rendered books/index.html.erb within layouts/application (42.3ms)
+Completed 200 OK in 54ms (Views: 46.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2011-03-06 01:11:40 +0900
+  Processing by BooksController#new as HTML
+  [1m[35mPublisher Load (0.3ms)[0m  SELECT "publishers".* FROM "publishers"
+Rendered books/_form.html.erb (63.3ms)
+Rendered books/new.html.erb within layouts/application (67.3ms)
+Completed 200 OK in 86ms (Views: 71.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/books/1/edit" for 127.0.0.1 at 2011-03-06 01:14:10 +0900
+  Processing by BooksController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBook Load (0.3ms)[0m  [1mSELECT "books".* FROM "books" WHERE "books"."id" = 1 LIMIT 1[0m
+  [1m[35mPublisher Load (0.4ms)[0m  SELECT "publishers".* FROM "publishers"
+Rendered books/_form.html.erb (111.8ms)
+Rendered books/edit.html.erb within layouts/application (116.3ms)
+Completed 200 OK in 138ms (Views: 121.4ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/books/1" for 127.0.0.1 at 2011-03-06 01:14:22 +0900
+  Processing by BooksController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SSdUxNcG7KhN/CCQ7gNuW+ayD/o+CE6Q8Q9WF+fqBSE=", "book"=>{"isbn"=>"978-4048687416", "title"=>"リーンソフトウェア開発と組織改革", "author"=>"Mary and Tom Poppendieck 著、 依田光江 翻訳、 依田智夫 監訳 (著)", "release_on(1i)"=>"2010", "release_on(2i)"=>"10", "release_on(3i)"=>"9", "price"=>"2800", "publisher_id"=>"1", "content"=>"重要なのは結果ではない。結果に注目するマネジメントの誤り―24のフレームを用い、システム開発を主導するリーダーシップについて解説する。", "page"=>"336", "image_url"=>"", "index"=>"", "view_status"=>"1"}, "commit"=>"Update", "id"=>"1"}
+  [1m[36mBook Load (0.3ms)[0m  [1mSELECT "books".* FROM "books" WHERE "books"."id" = 1 LIMIT 1[0m
+Redirected to http://localhost:3000/books/1
+Completed 302 Found in 41ms
+
+
+Started GET "/books/1" for 127.0.0.1 at 2011-03-06 01:14:23 +0900
+  Processing by BooksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mBook Load (0.4ms)[0m  SELECT "books".* FROM "books" WHERE "books"."id" = 1 LIMIT 1
+Rendered books/show.html.erb within layouts/application (60.1ms)
+Completed 200 OK in 88ms (Views: 66.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2011-03-06 01:14:25 +0900
+  Processing by BooksController#index as HTML
+  [1m[36mBook Load (0.6ms)[0m  [1mSELECT "books".* FROM "books"[0m
+  [1m[35mPublisher Load (0.3ms)[0m  SELECT "publishers".* FROM "publishers" WHERE "publishers"."id" = 1 LIMIT 1
+Rendered books/_list.html.erb (81.6ms)
+Rendered books/index.html.erb within layouts/application (86.9ms)
+Completed 200 OK in 102ms (Views: 92.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2011-03-06 01:14:30 +0900
+  Processing by BooksController#new as HTML
+  [1m[36mPublisher Load (0.4ms)[0m  [1mSELECT "publishers".* FROM "publishers"[0m
+Rendered books/_form.html.erb (94.3ms)
+Rendered books/new.html.erb within layouts/application (98.4ms)
+Completed 200 OK in 125ms (Views: 109.0ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2011-03-06 01:17:45 +0900
+  Processing by BooksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SSdUxNcG7KhN/CCQ7gNuW+ayD/o+CE6Q8Q9WF+fqBSE=", "book"=>{"isbn"=>"978-4894716858", "title"=>"XPエクストリーム・プログラミング入門―変化を受け入れる", "author"=>"Kent Beck (著), 長瀬 嘉秀 (翻訳), テクノロジックアート (翻訳) ", "release_on(1i)"=>"2005", "release_on(2i)"=>"12", "release_on(3i)"=>"30", "price"=>"2300", "publisher_id"=>"2", "content"=>"曖昧で変化しやすい要求仕様と向き合いながら、ソフトウェアを開発するためのライト級の方法論であるエクストリーム・プログラミング(XP)について解説する。新たな知見をとりいれた第2版。", "page"=>"189", "image_url"=>"", "index"=>"", "view_status"=>"1"}, "commit"=>"Create"}
+  [1m[35mAREL (0.6ms)[0m  INSERT INTO "books" ("isbn", "title", "author", "release_on", "price", "publisher_id", "content", "page", "image_url", "index", "view_status", "created_at", "updated_at") VALUES ('978-4894716858', 'XPエクストリーム・プログラミング入門―変化を受け入れる', 'Kent Beck (著), 長瀬 嘉秀 (翻訳), テクノロジックアート (翻訳) ', '2005-12-30', 2300, 2, '曖昧で変化しやすい要求仕様と向き合いながら、ソフトウェアを開発するためのライト級の方法論であるエクストリーム・プログラミング(XP)について解説する。新たな知見をとりいれた第2版。', 189, '', '', '1', '2011-03-05 16:17:45.688465', '2011-03-05 16:17:45.688465')
+Redirected to http://localhost:3000/books/2
+Completed 302 Found in 45ms
+
+
+Started GET "/books/2" for 127.0.0.1 at 2011-03-06 01:17:45 +0900
+  Processing by BooksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBook Load (0.4ms)[0m  [1mSELECT "books".* FROM "books" WHERE "books"."id" = 2 LIMIT 1[0m
+Rendered books/show.html.erb within layouts/application (25.6ms)
+Completed 200 OK in 48ms (Views: 30.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2011-03-06 01:17:47 +0900
+  Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.5ms)[0m  SELECT "books".* FROM "books"
+  [1m[36mPublisher Load (0.2ms)[0m  [1mSELECT "publishers".* FROM "publishers" WHERE "publishers"."id" = 1 LIMIT 1[0m
+  [1m[35mPublisher Load (0.3ms)[0m  SELECT "publishers".* FROM "publishers" WHERE "publishers"."id" = 2 LIMIT 1
+Rendered books/_list.html.erb (89.6ms)
+Rendered books/index.html.erb within layouts/application (93.9ms)
+Completed 200 OK in 110ms (Views: 97.7ms | ActiveRecord: 1.0ms)

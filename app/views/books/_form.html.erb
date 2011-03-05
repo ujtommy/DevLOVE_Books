@@ -1,0 +1,74 @@
+<%= form_for(@book) do |f| %>
+  <% if @book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+      <% @book.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<table>
+  <tr>
+    <th><%= f.label :isbn %></th>
+    <td><%= f.text_field :isbn %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :title %></th>
+    <td><%= f.text_field :title %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :author %></th>
+    <td><%= f.text_field :author %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :release_on %></th>
+    <td>
+      <%= f.date_select :release_on,
+        :start_year => 1995,
+        :end_year => Time.now.year,
+        :use_month_numbers => true,
+        :include_blank => true
+      %>
+    </td>
+  </tr>
+  <tr>
+    <th><%= f.label :price %></th>
+    <td><%= f.text_field :price %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :publisher_id %></th>
+    <td><%= f.select(:publisher_id, PublishersController.publisher_list) %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :content %></th>
+    <td><%= f.text_area :content %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :page %></th>
+    <td><%= f.text_field :page %></td>
+  </tr>
+
+  <tr>
+    <th><%= f.label :image_url %></th>
+    <td><%= f.text_field :image_url %></td>
+  </tr>
+
+  <tr>
+    <th><%= f.label :index %></th>
+    <td><%= f.text_area :index %></td>
+  </tr>
+
+    <tr>
+    <th><%= f.label :view_status %></th>
+    <td><%= f.text_field :view_status %></td>
+  </tr>
+
+  </table>
+  <p>
+    <%= f.submit btn_name %>
+  </p>
+<% end %>
