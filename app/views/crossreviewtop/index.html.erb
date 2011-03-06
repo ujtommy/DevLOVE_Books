@@ -1,0 +1,18 @@
+<h1>クロスレビュー</h1>
+<% @reviews.each do |review| -%>
+  <div class="entry">
+    <%#= image_tag(review.image_url) %>
+    <h3><%=h review.title %></h3>
+    <%= review.content %>
+    <%#*<div class="price-line">%>
+    <%#*<span class="price"><%= number_to_currency(product.price) %>
+    <%#*<!-- START:form_remote_tag -->%>
+    <%# form_remote_tag :url => {:action => 'add_to_cart', :id => product} do %>
+<%#*<!-- START_HIGHLIGHT -->%>
+      <%#= submit_tag I18n.t('main.button.add') %>
+<%#*<!-- END_HIGHLIGHT -->%>
+    <%# end %>
+    <%#*<!-- END:form_remote_tag -->%>
+    <%#*</div>%>
+  </div>
+<% end %>

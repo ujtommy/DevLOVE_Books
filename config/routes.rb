@@ -1,4 +1,6 @@
 DevLOVEBooks::Application.routes.draw do
+  get "crossreviewtop/index"
+
   resources :reviews
 
   get "admin/login"
