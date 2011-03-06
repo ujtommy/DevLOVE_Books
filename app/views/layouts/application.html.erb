@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DevLOVEBooks</title>
+  <title>DevLOVE Books</title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
 <body>
+  <div id="banner">
+    <%= @pagetitle || "DevLOVE Books" %>
+  </div>
+  <br />
 
-<%= yield %>
+  <div id="main">
+  <!-- START:flash -->
+    <% if flash[:notice] -%>
+      <div id="notice"><%= flash[:notice] %></div>
+    <% end -%>
+  <!-- END:flash -->
+
+    <%= yield :layout %>
+  </div>
+
+  <br />
+  <br />
+  <div id="bottom">
+<!-- START_HIGHLIGHT -->
+      <a href="http://www.devlove.org/">DevLOVE</a>
+      <a href="http://www.devlove.org/">お問い合わせ</a>
+<!-- END_HIGHLIGHT -->
+      <% if session[:user_id] %>
+        <a>  |  </a>
+        <%= link_to 'Books',   :controller => 'books' %>
+        <%= link_to 'Publishers', :controller => 'publishers' %>
+        <%= link_to 'Users',    :controller => 'users'    %>
+        <%= link_to 'Logout', :controller => 'admin', :action => 'logout' %>
+      <% end %>
+  </div>
 
 </body>
 </html>
