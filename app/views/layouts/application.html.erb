@@ -29,6 +29,7 @@
       <a href="http://www.devlove.org/">DevLOVE</a>
       <a href="http://www.devlove.org/">お問い合わせ</a>
 <!-- END_HIGHLIGHT -->
+      <%= link_to 'Login', :controller => 'admin', :action => 'login' %>
       <% if session[:user_id] %>
         <a>  |  </a>
         <%= link_to 'Books',   :controller => 'books' %>
